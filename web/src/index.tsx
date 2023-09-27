@@ -11,17 +11,16 @@ import { location } from './util';
 export const dataContext = createContext(null);
 
 function App() {
-    
+
     const [data, setData]: any = useState<any>(null);
     const [isLoading, setLoading]: any = useState(true);
     const style: any = useContext(StyleContext);
 
-    /******************************************/
-
     useEffect(() => {
             const fetchData: any = async () => {
-                let port: number = 5000;
-                const serverURL = `http://localhost:${port}`;
+                const ip = `192.168.86.38`;
+                const port: number = 5000;
+                const serverURL = `http://${ip}:${port}`;
                 const loc: number[] = await location();
                 if (loc) {
                     let data = {
@@ -31,23 +30,23 @@ function App() {
                     const resp: any = await axios.post(`${serverURL}/weather`, data)
                         .catch((error) => {
                             if (error.response) {
-                                console.log(error.response.data);
-                                console.log(error.response.status);
-                                console.log(error.response.headers);
+                                console.error(error.response.data);
+                                console.error(error.response.status);
+                                console.error(error.response.headers);
                             } else if (error.request) {
-                                console.log(error.request);
+                                console.error(error.request);
                             } else {
-                                console.log('Error', error.message);
+                                console.error('Error', error.message);
                             }
                         })
                         .then(response => response);
                     resp && setData(resp.data)
                     setLoading(false);
-                    //resp ? console.log(resp.data) : null
                 };
             };
             fetchData();
     }, []);
+
     return (
         <Container className='app' style={style.app}>
             {isLoading ? <Loading /> : null}

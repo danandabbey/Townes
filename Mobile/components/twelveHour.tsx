@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
-import weatherStyles from '../../assets/weatherStyles';
+import weatherStyles from '../assets/weatherStyles';
 
 const TwelveHour: React.FC<any> = ((props: any) => {
 

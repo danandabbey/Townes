@@ -48,6 +48,7 @@ const TwelveHour = (() => {
     const twelveHourData: any = data.twelveHour;
     const first = twelveHourData.findIndex((obj: any) => obj.isDayTime === true);
     const ten = twelveHourData.slice(first, 15);
+    console.log(ten)
 
     return (
         <Container className={'twelveHour'} style={style.twelveHour} >
@@ -55,7 +56,7 @@ const TwelveHour = (() => {
             <Forecast name={ten[2].name} temp={ten[2].temp} precipitation={ten[2].precipitation} nightTemp={ten[3].temp} nightPrecipitation={ten[3].precipitation} />
             <Forecast name={ten[4].name} temp={ten[4].temp} precipitation={ten[4].precipitation} nightTemp={ten[5].temp} nightPrecipitation={ten[5].precipitation} />
             <Forecast name={ten[6].name} temp={ten[6].temp} precipitation={ten[6].precipitation} nightTemp={ten[7].temp} nightPrecipitation={ten[7].precipitation} />
-            <Forecast name={ten[8].name} temp={ten[8].temp} precipitation={ten[8].precipitation} nightTemp={ten[9].temp} nightPrecipitation={ten[9].precipitation} />
+            <Forecast name={ten[8].name} temp={ten[8].temp} precipitation={ten[8].precipitation} nightTemp={ten[9]?.temp} nightPrecipitation={ten[9]?.precipitation} />
         </Container>
     );
 });

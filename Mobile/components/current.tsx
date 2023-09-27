@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
-import weatherStyles from '../../assets/weatherStyles';
-import Loading from '../loading';
+import weatherStyles from '../assets/weatherStyles';
+import Loading from './loading';
 
 
 interface Data {
@@ -32,10 +32,7 @@ const Current: React.FC<CurrentProps> = ({ data }) => {
         currentData && setCurrentData(data.current);
     }, [data]);
 
-    if (!currentData) {
-        return <Loading />
-    } else {
-    
+    if (currentData) {
         const {
             city,
             temp,
