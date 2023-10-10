@@ -42,6 +42,9 @@ const cutOff: number = 900;
 const [theme, setTheme]: any = useState('dark');
 const [style, setStyle]: any = useState(styles(theme));
 const [mobile, setMobile]: any = useState(window.innerWidth <= cutOff);
+setStyle(style)
+setTheme(theme)
+setMobile(mobile)
     
 /**********************************************************************
 
@@ -138,7 +141,7 @@ const LineChart = ((props: any) => {
 
 /**********************************************************************/
 
-const Chart = ((props: any) => {
+const Chart = (() => {
     const data: any = useContext(dataContext);
     const [currentChart, setCurrentData]: any = useState({});
     const time: any = data.chart.time;

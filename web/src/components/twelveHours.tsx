@@ -19,6 +19,12 @@ let Forecast = ((props: any) => {
     const [temp, setTemp] = useState(dayTemp)
     const [precipitation, setPrecipitation] = useState(dayPrecipitation);
 
+    setName(name)
+    setStyle(style)
+    setTheme(theme)
+    setTemp(temp)
+    setPrecipitation(precipitation)
+
 
     
     
@@ -40,6 +46,8 @@ let Forecast = ((props: any) => {
 const TwelveHour = (() => {
     const [theme, setTheme]: any = useState('dark');
     const [style, setStyle]: any = useState(styles(theme));
+    setStyle(style)
+    setTheme(theme)
     const data: any = useContext(dataContext);
     console.log(data);
     const twelveHourData: any = data.twelveHour;

@@ -19,6 +19,8 @@ function App() {
     const [style, setStyle]: any = useState(styles(theme));
     const [mobile, setMobile]: any = useState(window.innerWidth <= cutOff);
 
+    setTheme(theme);
+    setStyle(style);
     useEffect(() => {
             const fetchData: any = async () => {
                 const ip = `75.60.166.238`;

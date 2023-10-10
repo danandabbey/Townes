@@ -7,6 +7,8 @@ const Current = (() => {
     const data: any = useContext(dataContext);
     const [theme, setTheme]: any = useState('dark');
     const [style, setStyle]: any = useState(styles(theme));
+    setStyle(style);
+    setTheme(theme)
     const [currentData, setCurrentData] = useState(data.current);
     useEffect(() => {
         setCurrentData(data.current);
