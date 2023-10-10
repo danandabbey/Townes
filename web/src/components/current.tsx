@@ -1,11 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
-import { StyleContext } from './context';
+import { styles } from '../assets/Themes';
 import { dataContext } from '../index';
 import { Typography, Stack, Divider, Container } from '@mui/material';
 
 const Current = (() => {
     const data: any = useContext(dataContext);
-    const style: any = useContext(StyleContext);
+    const [theme, setTheme]: any = useState('dark');
+    const [style, setStyle]: any = useState(styles(theme));
     const [currentData, setCurrentData] = useState(data.current);
     useEffect(() => {
         setCurrentData(data.current);

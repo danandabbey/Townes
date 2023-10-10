@@ -52,12 +52,16 @@ const styles = ((theme: any) => {
             'alignItems': 'center'
         },
         chartBtn: {
-            'fontSize': '1.4em',
-            'color': color
+            'border': '1px solid',
+            'borderRadius': '5px',
+            'fontSize': '1em',
+            'color': color,
+            'padding': '.3em'
         },
         chartBtnCon: {
             'gap': mobile('1em', '5em'),
-            'paddingTop': '2em',
+            'paddingTop': '1em',
+            'paddingBottom': '5em',
             'display': 'flex',
             'flexDirection': 'row',
             'flexWrap': 'wrap',
@@ -72,7 +76,7 @@ const styles = ((theme: any) => {
             'flexDirection': 'column',
             'alignItems': 'center',
             'justifyContent': 'center',
-            'text-align': 'center',
+            'textAlign': 'center',
         },
         forecastName: {
             'fontSize': mobile('1.6em', '1.5em')

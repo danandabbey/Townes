@@ -5,9 +5,7 @@ export const MobileContext = createContext({});
 export const StyleContext = createContext({});
 
 export const GlobalContextProvider = ((props:any) => {
-    const cutOff: number = 900;
     const [theme, setTheme]: any = useState('dark');
-    const [mobile, setMobile]: any = useState(window.innerWidth <= cutOff);
     const [style, setStyle]: any = useState(styles(theme));
 
     useEffect(() => {
@@ -18,20 +16,11 @@ export const GlobalContextProvider = ((props:any) => {
         const preferredDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         setTheme(preferredDarkTheme ? 'dark' : 'light');
     }, []);
-    
-    useEffect(() => {
-        const handleResize = (() => {
-            setMobile(window.innerWidth <= cutOff || undefined);
-        });
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+
 
     return (
-        <MobileContext.Provider value={mobile}>
             <StyleContext.Provider value={style}>
                 {props.children}
             </StyleContext.Provider>
-        </MobileContext.Provider>
     );
 });

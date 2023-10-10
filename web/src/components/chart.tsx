@@ -13,7 +13,7 @@ things to do:
 
 import { useState, useEffect, useContext} from 'react'
 import { Line } from 'react-chartjs-2';
-import { StyleContext, MobileContext } from './context';
+import { styles } from '../assets/Themes';
 import { dataContext } from '../index';
 import { Stack, Container, Typography } from '@mui/material'
 
@@ -38,14 +38,18 @@ ChartJS.register(
     Legend
 );
 
+const cutOff: number = 900;
+const [theme, setTheme]: any = useState('dark');
+const [style, setStyle]: any = useState(styles(theme));
+const [mobile, setMobile]: any = useState(window.innerWidth <= cutOff);
+    
 /**********************************************************************
 
 Buttons that control the chart view
 
 **********************************************************************/
-
-const ChartButtons = ((props:any) => {
-    const style:any = useContext(StyleContext)
+    
+const ChartButtons = ((props: any) => {
     return (
         <Stack spacing={2} direction='row' style={style.chartBtnCon}>
             <Typography variant='h6' style={style.chartBtn} onClick={props.temperature}>Temperature</Typography>
@@ -57,11 +61,9 @@ const ChartButtons = ((props:any) => {
 
 /**********************************************************************/
 
-const LineChart = ((props:any) => {
-    const isMobile: any = useContext(MobileContext);
-    const style: any = useContext(StyleContext);
-    let titleSize: number = isMobile ? 30 : 40;
-    let fontSize: number = isMobile ? 15 : 20;
+const LineChart = ((props: any) => {
+    let titleSize: number = mobile ? 30 : 40;
+    let fontSize: number = mobile ? 15 : 20;
     const options = {
         responsive: true,
         layout: {
@@ -128,7 +130,7 @@ const LineChart = ((props:any) => {
             borderColor: style.app.color,
             tension: .5
         }]
-    };    
+    };
     return (
         <Line style={style.chart} data={data} options={options} />
     )
@@ -138,12 +140,11 @@ const LineChart = ((props:any) => {
 
 const Chart = ((props: any) => {
     const data: any = useContext(dataContext);
-    const style: any = useContext(StyleContext);
     const [currentChart, setCurrentData]: any = useState({});
     const time: any = data.chart.time;
     const chart: any = data.chart.chart;
 
-    interface chart{
+    interface chart {
         id: number,
         title: string,
         data: any
@@ -168,10 +169,10 @@ const Chart = ((props: any) => {
     }, [data.chart]);
 
     return (
-        <Container style = {style.chartCon}>
-            <Stack spacing = {2} direction = 'column' style={style.media} className='media'>
-                < LineChart time = {time} title = {currentChart.title} data = {currentChart.data} />
-                <ChartButtons temperature = {temperature} precipitation = {precipitation} humidity = {humidity} />
+        <Container style={style.chartCon}>
+            <Stack spacing={2} direction='column' style={style.media} className='media'>
+                < LineChart time={time} title={currentChart.title} data={currentChart.data} />
+                <ChartButtons temperature={temperature} precipitation={precipitation} humidity={humidity} />
             </Stack>
         </Container>
     );
