@@ -5,7 +5,8 @@ import getData from './data/weather/call';
 const server = () => {
     try {
         const app = express();
-        const ip = `192.168.86.38`
+        const ip = `75.60.166.238`
+        const allIps = '0.0.0.0';
         const port: number = 5000;
         app.use(bodyParser.json());
         app.use((req, res, next) => {
@@ -23,8 +24,8 @@ const server = () => {
                 console.error(error);
             };
         });
-        app.listen(port, ip, () => {
-            console.log(`Server is running on http://${ip}:${port}`);
+        app.listen(port, allIps, () => {
+            console.log(`server is listening on port ${port}`);
         });
     } catch (error) {
         console.error(error);
